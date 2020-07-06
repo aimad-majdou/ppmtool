@@ -1,10 +1,12 @@
 package com.example.ppmtool.domain;
 
+import com.example.ppmtool.core.domain.AbstractDomain;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Project {
+public class Project extends AbstractDomain<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,21 +17,8 @@ public class Project {
 	private Date startDate;
 	private Date endDate;
 	
-	private Date createdAt;
-	private Date updatedAt;
-	
 	public Project() {
 		super();
-	}
-	
-	@PrePersist
-	protected void onCreate() {
-		this.createdAt = new Date();
-	}
-	
-	@PreUpdate
-	protected void onUpdate() {
-		this.updatedAt = new Date();
 	}
 
 	public Long getId() {
@@ -79,23 +68,4 @@ public class Project {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-	
-	
-	
 }
